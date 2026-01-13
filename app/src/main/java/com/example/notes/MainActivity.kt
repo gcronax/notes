@@ -79,7 +79,7 @@ class MainActivity : ComponentActivity() {
                         },
                     floatingActionButton = {
                         Box(){
-                            circleAnimation()
+                            circleInfinite()
                             FloatingActionButton(
                                 onClick = { /* TODO */ },
                                 containerColor = Color(0xFF5A4599),
@@ -184,17 +184,17 @@ fun ScrollContent( modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun circleAnimation(){
-    val value by rememberInfiniteTransition(label =
-        "").animateFloat(
+fun circleInfinite(){
+
+    val value by rememberInfiniteTransition().animateFloat(
         initialValue = 0f,
         targetValue = 360f,
-        animationSpec=infiniteRepeatable(
+        animationSpec = infiniteRepeatable(
             animation = tween(
                 durationMillis = 1000,
-                easing=LinearEasing
+                easing = LinearEasing
             )
-        ),label=""
+        )
     )
 
     val colors = listOf(
@@ -214,14 +214,11 @@ fun circleAnimation(){
             )
         )
     }
-    Box(modifier=Modifier
-        .drawBehind{
-            rotate(value){
+    Box(modifier = Modifier
+        .drawBehind {
+            rotate(value) {
                 drawCircle(
-                    gradientBrush, style = Stroke(
-                        width =
-                            24.dp.value
-                    )
+                    gradientBrush, style = Stroke(width = 20.dp.value)
                 )
             }
         }
@@ -244,20 +241,13 @@ fun infiniteBelt(){
     )
     val infiniteTransition = rememberInfiniteTransition()
 
-    // Creates a Color animation as a part of the [InfiniteTransition].
     val color by
     infiniteTransition.animateColor(
-        initialValue = Color.Red,
-        targetValue = Color(0xff800000), // Dark Red
+        initialValue = Color(0xFF5E0FF1),
+        targetValue = Color(0xff800000),
         animationSpec =
             infiniteRepeatable(
-                // Linearly interpolate between initialValue and targetValue every 1000ms.
                 animation = tween(1000, easing = LinearEasing),
-                // Once [TargetValue] is reached, starts the next iteration in reverse (i.e.
-                // from
-                // TargetValue to InitialValue). Then again from InitialValue to
-                // TargetValue. This
-                // [RepeatMode] ensures that the animation value is *always continuous*.
                 repeatMode = RepeatMode.Reverse,
             ),
     )
