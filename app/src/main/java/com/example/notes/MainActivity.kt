@@ -78,16 +78,7 @@ class MainActivity : ComponentActivity() {
                         topAppbarNotes(scrollBehavior)
                         },
                     floatingActionButton = {
-                        Box(){
-                            circleInfinite()
-                            FloatingActionButton(
-                                onClick = { /* TODO */ },
-                                containerColor = Color(0xFF5A4599),
-                                contentColor = Color.White,
-                                shape = CircleShape
-                            ) {
-                                Icon(Icons.Default.Create, "Create")
-                            }}
+                        faB()
                     }
                     ) { innerPadding ->
                     ScrollContent(Modifier.padding(innerPadding))
@@ -95,6 +86,20 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+}
+
+@Composable
+fun faB(){
+    Box(){
+        circleInfinite()
+        FloatingActionButton(
+            onClick = { /* TODO */ },
+            containerColor = Color(0xFF5A4599),
+            contentColor = Color.White,
+            shape = CircleShape
+        ) {
+            Icon(Icons.Default.Create, "Create")
+        }}
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
